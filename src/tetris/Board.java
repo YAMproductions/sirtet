@@ -224,7 +224,7 @@ public class Board {
         int temp = 1 + rand.nextInt(SquareType.values().length -2);
         if(this.nextFalling == null) {
         	falling = tetroMaker.getPoly(temp);
-        	nextFalling = tetroMaker.getPoly(1 + rand.nextInt(SquareType.values().length -2));
+        	nextFalling = tetroMaker.getPoly(rand.nextInt(7));
         } else {
         	falling = nextFalling;
         	nextFalling = tetroMaker.getPoly(temp);
@@ -281,11 +281,13 @@ public class Board {
 		if(i == 40 && this.falling != null && pause == false)
 			tryMove(this.falling);
 		
+		/*
 		if(i == 38 && this.falling != null && pause == false) {
 			Poly temp = this.falling.rotateRight();
 			if(this.movePolyY(temp) && this.movePolyRight(temp) )
 				this.falling = temp;
 		}
+		*/
 		if(i == 80) this.pause = !pause;
 		
 		if(i == 32 && this.falling != null && pause == false) {

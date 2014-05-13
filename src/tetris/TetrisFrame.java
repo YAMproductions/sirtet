@@ -1,48 +1,42 @@
+package tetris;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.File;
 
-import javax.imageio.ImageIO;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 
 
 public class TetrisFrame extends JFrame implements BoardListener {
 	private Board board;
-	private JFrame frame;
 	public JTextField displayLevel;
 	public JTextField displayScore;
 	public JLabel gameStatus;
 	private TetrisComponent game;
 	
 	
-	public TetrisFrame(Board board){
+	public TetrisFrame(Board board, TetrisComponent game){
 		//Testing the layout
 		this.board = board;
-		game = new TetrisComponent(board);
+		this.game = game;
 		
+		board.addBoardListener(this);
+		board.addBoardListener(this);
 	
 		//Creating a frame
 		makeFrame(board);
-		
-		
-	
-		
+			
 		//Panel for board
 		makeBoardPanel();
 		
@@ -53,7 +47,6 @@ public class TetrisFrame extends JFrame implements BoardListener {
 		boardPanel.setMaximumSize(frame.getSize());
 		boardPanel.add(game);
 	*/
-		
 		
 		
 		//Creating Side panel for game information
@@ -69,7 +62,6 @@ public class TetrisFrame extends JFrame implements BoardListener {
 		JPanel nextBlock = new JPanel();
 		nextBlock.setLayout(new BorderLayout());
 		nextBlock.setMaximumSize(new Dimension(80,80));
-		nextBlock.setBackground(Color.BLUE);
 		nextBlock.add(testarBara, BorderLayout.CENTER);
 		
 		// Game status label
@@ -83,7 +75,6 @@ public class TetrisFrame extends JFrame implements BoardListener {
 		JPanel levelPanel = new JPanel();	
 		levelPanel.setLayout(new BorderLayout());
 		levelPanel.setMaximumSize(new Dimension(80, 20));
-		levelPanel.setBackground(Color.RED);
 		levelPanel.add(levelLabel, BorderLayout.CENTER);
 		levelPanel.add(displayLevel, BorderLayout.EAST);
 		
@@ -95,7 +86,6 @@ public class TetrisFrame extends JFrame implements BoardListener {
 		displayScore.setEditable(false);
 		scorePanel.setLayout(new BorderLayout());
 		scorePanel.setMaximumSize(new Dimension(80, 20));
-		scorePanel.setBackground(Color.CYAN);
 		scorePanel.add(scoreLabel, BorderLayout.CENTER);
 		scorePanel.add(displayScore, BorderLayout.EAST);
 		
@@ -112,11 +102,16 @@ public class TetrisFrame extends JFrame implements BoardListener {
 		
 		
 		//Adding everything to the main frame
-		frame.add(gameStatus, BorderLayout.PAGE_END);
-		frame.add(sidePanel, BorderLayout.EAST);
-		frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
-		frame.setResizable(false);
-		frame.setVisible(true);
+		this.add(gameStatus, BorderLayout.PAGE_END);
+		this.add(sidePanel, BorderLayout.EAST);
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		this.setResizable(false);
+		this.setFocusable(true);
+		this.setLocationRelativeTo(null); //centers the frame
+		this.pack();
+		this.setVisible(true);
+		this.game.requestFocusInWindow();
+		
 		
 	}
 	
@@ -126,10 +121,9 @@ public class TetrisFrame extends JFrame implements BoardListener {
 	 	 * @param board
 	 	 */
 		public void makeFrame(Board board){
-			frame = new JFrame();
-			frame.setSize(board.getWidth() + 100, board.getHeight() + 80);
-			frame.setLayout(new BorderLayout());
-			makeMenuBar(frame);
+			//frame.setSize(board.getWidth() + 100, board.getHeight() + 80);
+			this.setLayout(new BorderLayout());
+			makeMenuBar(this);
 			
 			
 		}
@@ -138,9 +132,9 @@ public class TetrisFrame extends JFrame implements BoardListener {
 			JPanel boardPanel = new JPanel();
 			boardPanel.setBorder(new EmptyBorder(10,10,0,0));
 			boardPanel.setLayout(new BorderLayout());
-			boardPanel.setMaximumSize(frame.getSize());
+			boardPanel.setMaximumSize(this.getSize());
 			boardPanel.add(game);
-			frame.add(boardPanel, BorderLayout.CENTER);
+			this.add(boardPanel, BorderLayout.CENTER);
 			
 		}
 	
@@ -170,7 +164,7 @@ public class TetrisFrame extends JFrame implements BoardListener {
 			JMenuItem pauseGame = new JMenuItem("Pause");
 			menu.add(pauseGame);
 			pauseGame.addActionListener(new ActionListener(){ 
-	        	public void actionPerformed(ActionEvent e) { board.setPause; }
+	        	public void actionPerformed(ActionEvent e) { board.setPause(); }
 	        	});
 			
 			// Quit game
@@ -193,19 +187,13 @@ public class TetrisFrame extends JFrame implements BoardListener {
 	@Override
 	public void boardChanged (){
 		// Kollar alla labels och updates så den kan uppdatera boarden
-		if(setPause){
+		if(board.getPause()){
 			gameStatus.setText("Game is paused");
 		}
 		
-			
-		
-			
-		}
+		this.repaint();
 		
 	}
-
-	
-	
 	
 	
 }

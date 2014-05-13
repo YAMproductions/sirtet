@@ -1,3 +1,4 @@
+package tetris;
 
 public class Poly {
 
@@ -10,8 +11,8 @@ public class Poly {
 	 * @param height
 	 */
 	
-	public Poly(SquareType[][] br, int width, int height){
-		this.poly = SquareType[][]
+	public Poly(SquareType[][] poly){
+		this.poly = poly;
 				
 	}
 	/**
@@ -28,7 +29,7 @@ public class Poly {
 	 * @return
 	 */
 	public int getPolyLength(){
-		return;
+		return poly.length;
 	}
 	
 	/**

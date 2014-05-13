@@ -1,6 +1,5 @@
-package com.SafirN.Sirtet;
+package tetris;
 
-import com.SafirN.Sirtet.Board.shapes;
 
 public class TetrominoMaker {
 	
@@ -33,69 +32,71 @@ public class TetrominoMaker {
 			case 6: {
 				return new Poly(makeO());
 			}
+			default : {
+				return new Poly(makeO());
+			}
 		}	
-		return null;
 	}
 	
-	private shapes[][] makeL() {
-		shapes[][] piece = new shapes[][] {
-				{	shapes.NOTHING, 	shapes.NOTHING, 	shapes.L 	   },
-				{	shapes.L, 			shapes.L, 			shapes.L	   },
-				{	shapes.NOTHING, 	shapes.NOTHING, 	shapes.NOTHING }
+	private SquareType[][] makeL() {
+		SquareType[][] piece = new SquareType[][] {
+				{	SquareType.EMPTY, 	SquareType.EMPTY, 	SquareType.L 	   },
+				{	SquareType.L, 			SquareType.L, 			SquareType.L	   },
+				{	SquareType.EMPTY, 	SquareType.EMPTY, 	SquareType.EMPTY }
 		};
 		return piece;
 	}
 	
-	private shapes[][] makeInvertedL() {
-		shapes[][] piece = new shapes[][]{
-				{	shapes.INVERTEDL, 	shapes.NOTHING, 	shapes.NOTHING   },
-				{	shapes.INVERTEDL, 	shapes.INVERTEDL, 	shapes.INVERTEDL },
-				{	shapes.NOTHING, 	shapes.NOTHING, 	shapes.NOTHING   }
+	private SquareType[][] makeInvertedL() {
+		SquareType[][] piece = new SquareType[][]{
+				{	SquareType.J, 	SquareType.EMPTY, 	SquareType.EMPTY   },
+				{	SquareType.J, 	SquareType.J, 	SquareType.J },
+				{	SquareType.EMPTY, 	SquareType.EMPTY, 	SquareType.EMPTY   }
 		};
 		return piece;
 	}
 	
-	private shapes[][] makeS() {
-		shapes[][] piece = new shapes[][]{
-				{	shapes.NOTHING, 	shapes.S, 			shapes.S       },
-				{	shapes.S, 			shapes.S, 			shapes.NOTHING },
-				{	shapes.NOTHING, 	shapes.NOTHING, 	shapes.NOTHING }
+	private SquareType[][] makeS() {
+		SquareType[][] piece = new SquareType[][]{
+				{	SquareType.EMPTY, 	SquareType.S, 			SquareType.S       },
+				{	SquareType.S, 			SquareType.S, 			SquareType.EMPTY },
+				{	SquareType.EMPTY, 	SquareType.EMPTY, 	SquareType.EMPTY }
 		};
 		return piece;
 	}
 	
-	private shapes[][] makeZ() {
-		shapes[][] piece = new shapes[][]{
-				{	shapes.Z, 			shapes.Z, 			shapes.NOTHING },
-				{	shapes.NOTHING,		shapes.Z, 			shapes.Z 	   },
-				{	shapes.NOTHING, 	shapes.NOTHING, 	shapes.NOTHING }
+	private SquareType[][] makeZ() {
+		SquareType[][] piece = new SquareType[][]{
+				{	SquareType.Z, 			SquareType.Z, 			SquareType.EMPTY },
+				{	SquareType.EMPTY,		SquareType.Z, 			SquareType.Z 	   },
+				{	SquareType.EMPTY, 	SquareType.EMPTY, 	SquareType.EMPTY }
 		};
 		return piece;
 	}
 	
-	private shapes[][] makeT() {
-		shapes[][] piece = new shapes[][] {
-				{	shapes.NOTHING,		shapes.T,			shapes.NOTHING },
-				{	shapes.T, 			shapes.T, 			shapes.T	   },
-				{	shapes.NOTHING,		shapes.NOTHING,		shapes.NOTHING }
+	private SquareType[][] makeT() {
+		SquareType[][] piece = new SquareType[][] {
+				{	SquareType.EMPTY,		SquareType.T,			SquareType.EMPTY },
+				{	SquareType.T, 			SquareType.T, 			SquareType.T	   },
+				{	SquareType.EMPTY,		SquareType.EMPTY,		SquareType.EMPTY }
 		};
 		return piece;
 	}
 	
-	private shapes[][] makeI() {
-		shapes[][] piece = new shapes[][] {
-			{	shapes.NOTHING,		shapes.NOTHING,		shapes.NOTHING,		shapes.NOTHING },
-			{	shapes.I, 			shapes.I, 			shapes.I,			shapes.I	   },
-			{	shapes.NOTHING,		shapes.NOTHING,		shapes.NOTHING,		shapes.NOTHING },
-			{	shapes.NOTHING, 	shapes.NOTHING, 	shapes.NOTHING, 	shapes.NOTHING }
+	private SquareType[][] makeI() {
+		SquareType[][] piece = new SquareType[][] {
+			{	SquareType.EMPTY,		SquareType.EMPTY,		SquareType.EMPTY,		SquareType.EMPTY },
+			{	SquareType.I, 			SquareType.I, 			SquareType.I,			SquareType.I	   },
+			{	SquareType.EMPTY,		SquareType.EMPTY,		SquareType.EMPTY,		SquareType.EMPTY },
+			{	SquareType.EMPTY, 	SquareType.EMPTY, 	SquareType.EMPTY, 	SquareType.EMPTY }
 		};
 		return piece;
 	}
 	
-	private shapes[][] makeO() {
-		shapes[][] piece = new shapes[][] {
-			{	shapes.O,			shapes.O },
-			{	shapes.O, 			shapes.O },
+	private SquareType[][] makeO() {
+		SquareType[][] piece = new SquareType[][] {
+			{	SquareType.O,			SquareType.O },
+			{	SquareType.O, 			SquareType.O },
 		};
 		return piece;
 	}
