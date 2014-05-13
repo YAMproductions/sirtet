@@ -1,26 +1,21 @@
 package com.SafirN.Sirtet;
 
 import javax.swing.JComponent;
-import javax.swing.KeyStroke;
 
 import com.SafirN.Sirtet.Board.shapes;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Event;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.HashMap;
 
 public class TetrisComponent extends JComponent implements BoardListener {
 	
+	private static final long serialVersionUID = 1L;
 	private Board gameBoard;
 	private HashMap<shapes, Color> colorMap;
 	
-	private final static int WINDOW_WIDTH = 367;
-	private final static int WINDOW_HEIGHT = 612;
 	private final static int BLOCKSIZE = 20;
 	
 	public TetrisComponent(Board board, HashMap<shapes, Color> map) {
