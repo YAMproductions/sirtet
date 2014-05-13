@@ -1,5 +1,7 @@
 
 public class Poly {
+
+	private SquareType[][] poly;
 	
 	/**
 	 * A general class to make all type of blocks
@@ -9,7 +11,7 @@ public class Poly {
 	 */
 	
 	public Poly(SquareType[][] br, int width, int height){
-
+		this.poly = SquareType[][]
 				
 	}
 	/**
@@ -18,6 +20,7 @@ public class Poly {
 	 */
 	
 	public SquareType[][] getPoly(){
+		return poly;
 		
 	}
 	/**
@@ -25,14 +28,14 @@ public class Poly {
 	 * @return
 	 */
 	public int getPolyLength(){
-		return 1;
+		return;
 	}
 	
 	/**
 	 * Rotates the block 
 	 */
 	public void rotateRight(){
-		//Rotera 
+		
 		
 	}
 	
