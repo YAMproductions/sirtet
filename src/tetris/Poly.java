@@ -1,8 +1,9 @@
 package tetris;
 
 public class Poly {
-
 	private SquareType[][] poly;
+
+	
 	
 	/**
 	 * A general class to make all type of blocks
@@ -21,8 +22,7 @@ public class Poly {
 	 */
 	
 	public SquareType[][] getPoly(){
-		return poly;
-		
+		return poly;	
 	}
 	/**
 	 * returns the length of the block
@@ -35,9 +35,19 @@ public class Poly {
 	/**
 	 * Rotates the block 
 	 */
-	public void rotateRight(){
-		
-		
+	public Poly rotateRight(){
+		SquareType[][] rotatedPoly = new SquareType[getPolyLength()][getPolyLength()];
+		for(int y = 0; y < poly.length; y++){
+			
+			for(int x = 0; x < poly[y].length; x++){
+				
+				rotatedPoly[poly.length - y -1][x] = poly[x][y];
+				
+			}
+			
+		}
+		poly = rotatedPoly;	
+		return new Poly(poly);
 	}
 	
 	
