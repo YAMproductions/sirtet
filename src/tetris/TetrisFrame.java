@@ -63,10 +63,10 @@ public class TetrisFrame extends JFrame implements BoardListener {
 
 		setGameStatus();
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-		this.setResizable(true);
-		this.setFocusable(true);
-		this.setLocationRelativeTo(null); // centers the frame
+		this.setResizable(false);
+		this.setFocusable(true);		
 		this.pack();
+		this.setLocationRelativeTo(null); // centers the frame
 		this.setVisible(true);
 		this.game.requestFocusInWindow();
 
@@ -87,7 +87,7 @@ public class TetrisFrame extends JFrame implements BoardListener {
 	private void makeSidePanel() {
 		JPanel sidePanel = new JPanel();
 		
-		sidePanel.setBorder(new EmptyBorder(10, 0, 0, 0));
+		sidePanel.setBorder(new EmptyBorder(10, 10, 0, 0));
 		sidePanel.setLayout(new BoxLayout(sidePanel, BoxLayout.Y_AXIS));
 
 		// Adding information
@@ -108,7 +108,6 @@ public class TetrisFrame extends JFrame implements BoardListener {
 		JPanel boardPanel = new JPanel();
 		boardPanel.setBorder(new EmptyBorder(10, 10, 0, 0));
 		boardPanel.setLayout(new BorderLayout());
-		boardPanel.setMaximumSize(this.getSize());
 		boardPanel.add(game);
 		this.add(boardPanel, BorderLayout.CENTER);
 
@@ -186,7 +185,7 @@ public class TetrisFrame extends JFrame implements BoardListener {
 		
 		displayScore.setForeground(Color.RED);
 		scorePanel.setLayout(new FlowLayout());
-		scorePanel.setMaximumSize(new Dimension(80, 20));
+
 		
 		scorePanel.add(scoreLabel, FlowLayout.LEFT);
 		scorePanel.add(displayScore, FlowLayout.CENTER);
@@ -200,14 +199,11 @@ public class TetrisFrame extends JFrame implements BoardListener {
 	private void setNextBlock(JPanel sidePanel) {
 		JLabel testarBara = new JLabel("Blooooooock");
 		testarBara.setBorder(new EmptyBorder(10, 10, 10, 10));
-		// background.add(sidePanel, BorderLayout.EAST);
 
 		// Next block box
 		JPanel nextBlock = new JPanel();
 		nextBlock.setBackground(Color.CYAN);
-		nextBlock.setPreferredSize(new Dimension(100,100));
 		nextBlock.setLayout(new BorderLayout());
-		//nextBlock.setMaximumSize(new Dimension(80, 80));
 		nextBlock.add(nextComponent, BorderLayout.CENTER);
 		sidePanel.add(nextBlock, Box.TOP_ALIGNMENT);
 		
@@ -225,7 +221,6 @@ public class TetrisFrame extends JFrame implements BoardListener {
 		
 		displayLevel.setForeground(Color.RED);
 		levelPanel.setLayout(new FlowLayout());
-		levelPanel.setMaximumSize(new Dimension(80, 20));
 		levelPanel.add(levelLabel, FlowLayout.LEFT);
 		levelPanel.add(displayLevel, FlowLayout.CENTER);
 		sidePanel.add(levelPanel, Box.TOP_ALIGNMENT);
