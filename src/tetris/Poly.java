@@ -3,15 +3,10 @@ package tetris;
 public class Poly {
 	private SquareType[][] poly;
 
-	
-	
 	/**
 	 * A general class to make all type of blocks
-	 * @param br
-	 * @param width
-	 * @param height
+	 * @param poly
 	 */
-	
 	public Poly(SquareType[][] poly){
 		this.poly = poly;
 				
@@ -20,7 +15,6 @@ public class Poly {
 	 * returns a blocktype
 	 * @return
 	 */
-	
 	public SquareType[][] getPoly(){
 		return poly;	
 	}
@@ -36,19 +30,12 @@ public class Poly {
 	 * Rotates the block 
 	 */
 	public Poly rotateRight(){
-		SquareType[][] rotatedPoly = new SquareType[getPolyLength()][getPolyLength()];
-		for(int y = 0; y < poly.length; y++){
-			
-			for(int x = 0; x < poly[y].length; x++){
-				
-				rotatedPoly[poly.length - y -1][x] = poly[x][y];
-				
-			}
-			
-		}
-		poly = rotatedPoly;	
-		return new Poly(poly);
+		Poly newPoly = new Poly(new SquareType[this.getPolyLength()][this.getPolyLength()]);	    
+	    for (int r = 0; r < this.getPolyLength(); r++) {
+	        for (int c = 0; c < this.getPolyLength(); c++){
+	            newPoly.poly[c][this.getPolyLength()-1 -r] = this.poly[r][c];
+	        }
+	    }    
+	    return newPoly;
 	}
-	
-	
 }
