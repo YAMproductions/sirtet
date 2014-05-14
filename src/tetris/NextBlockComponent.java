@@ -36,11 +36,9 @@ public class NextBlockComponent extends JComponent implements BoardListener {
 		final Graphics2D g2d = (Graphics2D) g;
 		
 		for(int x = 0 ; x < displayArray.length ; x++) {
-			for(int y = 0 ; y < displayArray.length ; y++) {
-				g2d.setColor(colorMap.get(gameBoard.getSquaretype(x, y)));
-				g2d.fillRect(x, y, BLOCKSIZE * (x - 1), BLOCKSIZE * (y - 1));
-				g2d.setColor(Color.WHITE);
-				g2d.drawRect(x, y, BLOCKSIZE * (x - 1), BLOCKSIZE * (y - 1));
+			for(int y = 0 ; y < displayArray[x].length ; y++) {
+				g2d.setColor(colorMap.get(displayArray[x][y]));
+				g2d.fillRect(x * BLOCKSIZE, y * BLOCKSIZE, BLOCKSIZE, BLOCKSIZE);
 			}
 		}
 		if(gameBoard.getNextFalling() != null) {
@@ -65,7 +63,7 @@ public class NextBlockComponent extends JComponent implements BoardListener {
 	@Override
 	public Dimension getPreferredSize() {
 		super.getPreferredSize();
-		return new Dimension(gameBoard.getWidth() * BLOCKSIZE, gameBoard.getHeight() * BLOCKSIZE);
+		return new Dimension(displayArray.length * BLOCKSIZE, displayArray.length * BLOCKSIZE);
 	}
 	
 	public void boardChanged() {
