@@ -250,7 +250,6 @@ public class Board {
 			this.fallingPosition.setLocation(this.fallingPosition.getX(), this.fallingPosition.getY() +1);
 			return true;
 		}
-		System.out.println(fallingPosition.getY());
 		return false;
 	}
 	
@@ -351,6 +350,7 @@ public class Board {
 	 */
 	private void checkRows(Poly poly) {
 		int multiScore = 0;
+		int newScore = 0;
 		for(int y = 1; y < this.height -1 ; y++) {
 			boolean fullRow = true;
 			for(int x = 1; x < this.width -1; x++) {
@@ -359,11 +359,12 @@ public class Board {
 			}
 			if(fullRow) { 
 				removeRow(y);
-				this.score += 100;
+				newScore += 100;
 				multiScore++;
 			}
 		}
-		if(multiScore > 0) this.score = this.score * multiScore;
+		if(multiScore > 0) newScore = newScore * multiScore;
+		this.score += newScore;
 		this.notifyListeners();
 	}
 	
