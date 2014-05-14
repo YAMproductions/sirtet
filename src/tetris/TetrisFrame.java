@@ -54,12 +54,13 @@ public class TetrisFrame extends JFrame implements BoardListener {
 		// Side Panel for information
 		makeSidePanel();
 
+		
 		// Creating PopUp Label
 		popUpStatus = new JLabel("Status");
 		popUpStatus.setFont(popUpStatus.getFont().deriveFont(64f));
 
 		// Setting up the frame
-
+		
 		setGameStatus();
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setResizable(false);
@@ -84,16 +85,16 @@ public class TetrisFrame extends JFrame implements BoardListener {
 	 * panel.
 	 */
 	private void makeSidePanel() {
+		JLabel nextBlockLabel = new JLabel("Next block:");
+		nextBlockLabel.setBorder(new EmptyBorder(0,0,0,10));
 		JPanel sidePanel = new JPanel();
-		
-		sidePanel.setBorder(new EmptyBorder(10, 10, 0, 0));
+		sidePanel.setBorder(new EmptyBorder(10, 10, 0, 10));
 		sidePanel.setLayout(new BoxLayout(sidePanel, BoxLayout.Y_AXIS));
 
 		// Adding information
+		sidePanel.add(nextBlockLabel);
 		setNextBlock(sidePanel);
-		
 		setDisplayLevel(sidePanel);
-		
 		setDisplayScore(sidePanel);
 		this.add(sidePanel, BorderLayout.EAST);
 	}
@@ -196,7 +197,6 @@ public class TetrisFrame extends JFrame implements BoardListener {
 	private void setNextBlock(JPanel sidePanel) {
 		// Next block box
 		JPanel nextBlock = new JPanel();
-		nextBlock.setBackground(Color.CYAN);
 		nextBlock.add(nextComponent);
 		sidePanel.add(nextBlock);
 		
@@ -211,7 +211,6 @@ public class TetrisFrame extends JFrame implements BoardListener {
 		
 		JLabel levelLabel = new JLabel("Level:");
 		JPanel levelPanel = new JPanel();
-		
 		displayLevel.setForeground(Color.RED);
 		levelPanel.setLayout(new FlowLayout());
 		levelPanel.add(levelLabel, FlowLayout.LEFT);
