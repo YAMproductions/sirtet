@@ -2,7 +2,6 @@ package tetris;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -92,10 +91,8 @@ public class TetrisFrame extends JFrame implements BoardListener {
 
 		// Adding information
 		setNextBlock(sidePanel);
-		sidePanel.add(Box.createVerticalStrut(30));
 		
 		setDisplayLevel(sidePanel);
-		sidePanel.add(Box.createVerticalStrut(30));
 		
 		setDisplayScore(sidePanel);
 		this.add(sidePanel, BorderLayout.EAST);
@@ -197,15 +194,11 @@ public class TetrisFrame extends JFrame implements BoardListener {
 	 * @param sidePanel
 	 */
 	private void setNextBlock(JPanel sidePanel) {
-		JLabel testarBara = new JLabel("Blooooooock");
-		testarBara.setBorder(new EmptyBorder(10, 10, 10, 10));
-
 		// Next block box
 		JPanel nextBlock = new JPanel();
 		nextBlock.setBackground(Color.CYAN);
-		nextBlock.setLayout(new BorderLayout());
-		nextBlock.add(nextComponent, BorderLayout.CENTER);
-		sidePanel.add(nextBlock, Box.TOP_ALIGNMENT);
+		nextBlock.add(nextComponent);
+		sidePanel.add(nextBlock);
 		
 	}
 	/**
@@ -223,7 +216,7 @@ public class TetrisFrame extends JFrame implements BoardListener {
 		levelPanel.setLayout(new FlowLayout());
 		levelPanel.add(levelLabel, FlowLayout.LEFT);
 		levelPanel.add(displayLevel, FlowLayout.CENTER);
-		sidePanel.add(levelPanel, Box.TOP_ALIGNMENT);
+		sidePanel.add(levelPanel);
 
 	}
 	/**
@@ -236,7 +229,7 @@ public class TetrisFrame extends JFrame implements BoardListener {
 			
 		}else{
 			gameStatus.setText("<html>Game is <font color='red'> running </font></html>");
-			pauseGame.setText("Pause	P");
+			pauseGame.setText("Pause" + " " + "P");
 		}
 	}
 	/**
