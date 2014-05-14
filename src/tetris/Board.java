@@ -12,7 +12,7 @@ import javax.swing.Timer;
 /**
  * Game Board Class
  * 
- * @author Daniel C
+ * @author YAM Productions
  * @version 1
  *
  */
@@ -110,24 +110,16 @@ public class Board {
 		notifyListeners();
 	}
 	
-	/**
-	 * Returns the height of the Board
-	 * @return
-	 */
 	public int getHeight() {
 		return height;	
 	}
 	
-	/**
-	 * Returns the width of the Board
-	 * @return
-	 */
 	public int getWidth() {
 		return width;	
 	}
 	
 	/**
-	 * Returns the SquareType at xy coordinate
+	 * Returns the SquareType at x, y coordinate
 	 * @param x
 	 * @param y
 	 * @return
@@ -146,10 +138,6 @@ public class Board {
 		this.squares[x][y] = type;
 	}
 	
-	/**
-	 * Returns the squares
-	 * @return
-	 */
 	public SquareType[][] getBoard() {
 		return squares;
 	}
@@ -158,34 +146,18 @@ public class Board {
 		falling = p;
 	}
 	
-	/**
-	 * Returns the falling Poly
-	 * @return
-	 */
 	public Poly getFalling() {
 		return falling;
 	}
 				
-	/**
-	 * 
-	 * @return
-	 */
 	public Point getFallingPosition() {
 		return fallingPosition;
 	}
 	
-	/**
-	 * 
-	 * @param bl
-	 */
 	public void addBoardListener(BoardListener bl) {
 		boardListeners.add(bl);
 	}
 	
-	/**
-	 * 
-	 * @return
-	 */
 	public int getScore() {
 		return this.score;
 	}
@@ -203,7 +175,7 @@ public class Board {
 	}
 	
 	/**
-	 * 
+	 * Notify all classes that "listens" to board changes
 	 */
 	private void notifyListeners() {
 		if(boardListeners.isEmpty()) {
@@ -230,11 +202,43 @@ public class Board {
         	falling = nextFalling;
         	nextFalling = tetroMaker.getPoly(temp);
         }
-        
         //centers the polly
-        this.fallingPosition.setLocation(getWidth()/2 - falling.getPolyLength()/2, 0);  //set x = y , y = x
+        this.fallingPosition.setLocation(getWidth()/2 - falling.getPolyLength()/2, 0);
         return falling;
     }
+	
+	/**
+	 * Player movement of the Poly and game input from keyboard
+	 * @param i
+	 */
+	public void playerMovePoly(int i) {
+		//37 = left
+		if(i == 37 && !getPause())
+			tryMoveX(this.falling, 0);
+		//39 = right
+		if(i == 39 && !getPause())
+			tryMoveX(this.falling, 1);
+		//40 = down
+		if(i == 40 && this.falling != null && !getPause())
+			tryMove(this.falling);
+		
+		//38 = rotate the Poly to the right
+		if(i == 38 && this.falling != null && !getPause()) {
+			Poly temp = this.falling.rotateRight();
+			if(this.movePolyY(temp) && this.movePolyRight(temp) )
+				this.falling = temp;
+		}
+		
+		//80 = pause the game / unpause
+		if(i == 80) this.pause = !pause;
+		
+		//32 = move the Poly as far down as possible
+		if(i == 32 && this.falling != null && pause == false) {
+			while(tryMove(this.falling));
+		}
+		
+		this.notifyListeners();
+	}
 	
 	/**
 	 * Try's to move the falling Poly
@@ -265,40 +269,9 @@ public class Board {
 		if(i == 1 && movePolyRight(poly))
 			this.fallingPosition.setLocation(this.fallingPosition.getX() +1 , this.fallingPosition.getY());
 	}
-	
+		
 	/**
-	 * Player movement of the Poly
-	 * @param i
-	 */
-	public void playerMovePoly(int i) {
-		//37 = left
-		if(i == 37 && pause == false)
-			tryMoveX(this.falling, 0);
-		//39 = right
-		if(i == 39 && pause == false)
-			tryMoveX(this.falling, 1);
-		//40 = down
-		if(i == 40 && this.falling != null && pause == false)
-			tryMove(this.falling);
-		
-		
-		if(i == 38 && this.falling != null && pause == false) {
-			Poly temp = this.falling.rotateRight();
-			if(this.movePolyY(temp) && this.movePolyRight(temp) )
-				this.falling = temp;
-		}
-		
-		if(i == 80) this.pause = !pause;
-		
-		if(i == 32 && this.falling != null && pause == false) {
-			while(tryMove(this.falling));
-		}
-		
-		this.notifyListeners();
-	}
-	
-	/**
-	 * Checks if it is possible to move the Poly to the left
+	 * Checks if it is possible to move the Poly to the right
 	 * @param poly
 	 * @param point
 	 * @return
@@ -336,7 +309,7 @@ public class Board {
 	}
 	
 	/**
-	 * 
+	 * Moves the poly on the y-axis
 	 * @param poly
 	 * @param point
 	 * @return
@@ -356,6 +329,7 @@ public class Board {
 	
 	/**
 	 * Adds a fallen Poly to the game board
+	 * @param poly
 	 */
 	private void addPolyToBoard(Poly poly) {
 		for(int x = 0; x < poly.getPolyLength(); x++) {
@@ -370,7 +344,13 @@ public class Board {
 		level();
 	}
 	
-	private void checkRows(Poly poly) {;
+	/**
+	 * Checks if a row is full
+	 * If multiple rows are filled the player receives a "multi score"
+	 * @param poly
+	 */
+	private void checkRows(Poly poly) {
+		int multiScore = 0;
 		for(int y = 1; y < this.height -1 ; y++) {
 			boolean fullRow = true;
 			for(int x = 1; x < this.width -1; x++) {
@@ -379,14 +359,16 @@ public class Board {
 			}
 			if(fullRow) { 
 				removeRow(y);
-				score += 100;
+				this.score += 100;
+				multiScore++;
 			}
 		}
+		if(multiScore > 0) this.score = this.score * multiScore;
 		this.notifyListeners();
 	}
 	
 	/**
-	 * 
+	 * Removes a row
 	 * @param y
 	 */
 	private void removeRow(int y) {
@@ -410,6 +392,9 @@ public class Board {
         }
     }
 	
+	/**
+	 * Sets the level of the game
+	 */
 	private void level() {
 		if(fallenTetrominoCounter == 20) {
 			if(TICK_COUNT > 50) { 
@@ -466,12 +451,13 @@ public class Board {
 		}
 		notifyListeners();
 	}
+	
 	public boolean gameOver() {
 		return this.gameOver;
 	}
 	
 	/**
-	 * Clears the board
+	 * Clears the board and resets the game variables
 	 */
 	public void clearBoard() {
 		this.gameOver = false;
@@ -482,22 +468,4 @@ public class Board {
 		this.TICK_COUNT = 200;
 		createEmptyBoard(this.width, this.height);
 	}
-	/*
-	public static void main(String[] args) {
-		int height = 22;
-		int width = 12;
-		int counter = 0;
-		Board b = new Board(width, height);
-		System.out.println(b.squares.length);
-		
-		for(int x = 0; x < width; x++) {
-			for(int y = 0; y < height; y++) {
-				//System.out.println(y);
-				System.out.println(b.squares[x][y]);
-				counter++;
-			}
-		}
-		System.out.println(counter);
-	}
-	*/
 }
