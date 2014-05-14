@@ -40,55 +40,55 @@ public class TetrominoMaker {
 	
 	private SquareType[][] makeL() {
 		SquareType[][] piece = new SquareType[][] {
-				{	SquareType.EMPTY, 	SquareType.EMPTY, 	SquareType.L 	   },
-				{	SquareType.L, 			SquareType.L, 			SquareType.L	   },
-				{	SquareType.EMPTY, 	SquareType.EMPTY, 	SquareType.EMPTY }
+				{	SquareType.EMPTY, 		SquareType.L, 		SquareType.EMPTY 	   },
+				{	SquareType.EMPTY, 		SquareType.L, 		SquareType.EMPTY	   },
+				{	SquareType.L, 			SquareType.L, 		SquareType.EMPTY  	   }
 		};
 		return piece;
 	}
 	
 	private SquareType[][] makeInvertedL() {
 		SquareType[][] piece = new SquareType[][]{
-				{	SquareType.J, 	SquareType.EMPTY, 	SquareType.EMPTY   },
-				{	SquareType.J, 	SquareType.J, 	SquareType.J },
-				{	SquareType.EMPTY, 	SquareType.EMPTY, 	SquareType.EMPTY   }
+				{	SquareType.J, 			SquareType.J, 		SquareType.EMPTY       },
+				{	SquareType.EMPTY, 		SquareType.J, 		SquareType.EMPTY 	   },
+				{	SquareType.EMPTY, 		SquareType.J, 		SquareType.EMPTY   	   }
 		};
 		return piece;
 	}
 	
 	private SquareType[][] makeS() {
 		SquareType[][] piece = new SquareType[][]{
-				{	SquareType.EMPTY, 	SquareType.S, 			SquareType.S       },
-				{	SquareType.S, 			SquareType.S, 			SquareType.EMPTY },
-				{	SquareType.EMPTY, 	SquareType.EMPTY, 	SquareType.EMPTY }
+				{	SquareType.EMPTY, 	SquareType.S, 			SquareType.EMPTY    },
+				{	SquareType.S, 		SquareType.S, 			SquareType.EMPTY 	},
+				{	SquareType.S, 		SquareType.EMPTY, 		SquareType.EMPTY 	}
 		};
 		return piece;
 	}
 	
 	private SquareType[][] makeZ() {
 		SquareType[][] piece = new SquareType[][]{
-				{	SquareType.Z, 			SquareType.Z, 			SquareType.EMPTY },
-				{	SquareType.EMPTY,		SquareType.Z, 			SquareType.Z 	   },
-				{	SquareType.EMPTY, 	SquareType.EMPTY, 	SquareType.EMPTY }
+				{	SquareType.Z, 			SquareType.EMPTY, 	SquareType.EMPTY 	},
+				{	SquareType.Z,			SquareType.Z, 		SquareType.EMPTY 	},
+				{	SquareType.EMPTY, 		SquareType.Z, 		SquareType.EMPTY 	}
 		};
 		return piece;
 	}
 	
 	private SquareType[][] makeT() {
 		SquareType[][] piece = new SquareType[][] {
-				{	SquareType.EMPTY,		SquareType.T,			SquareType.EMPTY },
-				{	SquareType.T, 			SquareType.T, 			SquareType.T	   },
-				{	SquareType.EMPTY,		SquareType.EMPTY,		SquareType.EMPTY }
+				{	SquareType.EMPTY,		SquareType.T,			SquareType.EMPTY 	},
+				{	SquareType.T, 			SquareType.T, 			SquareType.EMPTY    },
+				{	SquareType.EMPTY,		SquareType.T,			SquareType.EMPTY	}
 		};
 		return piece;
 	}
 	
 	private SquareType[][] makeI() {
 		SquareType[][] piece = new SquareType[][] {
-			{	SquareType.EMPTY,		SquareType.EMPTY,		SquareType.EMPTY,		SquareType.EMPTY },
-			{	SquareType.I, 			SquareType.I, 			SquareType.I,			SquareType.I	   },
-			{	SquareType.EMPTY,		SquareType.EMPTY,		SquareType.EMPTY,		SquareType.EMPTY },
-			{	SquareType.EMPTY, 	SquareType.EMPTY, 	SquareType.EMPTY, 	SquareType.EMPTY }
+			{	SquareType.EMPTY,		SquareType.I,		SquareType.EMPTY,		SquareType.EMPTY 	},
+			{	SquareType.EMPTY,		SquareType.I, 		SquareType.EMPTY,		SquareType.EMPTY	},
+			{	SquareType.EMPTY,		SquareType.I,		SquareType.EMPTY,		SquareType.EMPTY 	},
+			{	SquareType.EMPTY, 		SquareType.I, 		SquareType.EMPTY, 		SquareType.EMPTY 	}
 		};
 		return piece;
 	}

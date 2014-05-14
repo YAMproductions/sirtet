@@ -24,6 +24,7 @@ public class Board {
 	private final int width;
 	private Random rand;
 	private Poly falling;
+	private Poly nextFalling;
 	private Point fallingPosition; //top left corner of the Polyomino
 	private boolean gameOver;
 	private ArrayList<BoardListener> boardListeners; 
@@ -31,7 +32,6 @@ public class Board {
 	private int level;
 	private int fallenTetrominoCounter;
 	private boolean pause;
-	private Poly nextFalling;
 	
     /**
      * The tick Action, determines which function to call when the game updates.
@@ -170,7 +170,7 @@ public class Board {
 	 * 
 	 * @return
 	 */
-	public Point getFallingPostiton() {
+	public Point getFallingPosition() {
 		return fallingPosition;
 	}
 	
@@ -198,7 +198,8 @@ public class Board {
 		return pause;
 	}
 	
-	public void getNextFalling() {
+	public Poly getNextFalling() {
+		return nextFalling;
 	}
 	
 	/**
@@ -221,10 +222,10 @@ public class Board {
 	private Poly createNewFalling() {
         TetrominoMaker tetroMaker = new TetrominoMaker();
         Poly falling;
-        int temp = 1 + rand.nextInt(SquareType.values().length -2);
+        int temp = rand.nextInt(SquareType.values().length -2);
         if(this.nextFalling == null) {
         	falling = tetroMaker.getPoly(temp);
-        	nextFalling = tetroMaker.getPoly(rand.nextInt(7));
+        	nextFalling = tetroMaker.getPoly(temp);
         } else {
         	falling = nextFalling;
         	nextFalling = tetroMaker.getPoly(temp);
@@ -273,7 +274,7 @@ public class Board {
 		//37 = left
 		if(i == 37 && pause == false)
 			tryMoveX(this.falling, 0);
-		//39 = rigth
+		//39 = right
 		if(i == 39 && pause == false)
 			tryMoveX(this.falling, 1);
 		//40 = down
@@ -361,7 +362,7 @@ public class Board {
 		for(int x = 0; x < poly.getPolyLength(); x++) {
 			for(int y = 0; y < poly.getPolyLength(); y++) {
 				if(poly.getPoly()[x][y] != SquareType.EMPTY) {
-					squares[this.getFallingPostiton().x + x][this.getFallingPostiton().y +y] = poly.getPoly()[x][y];
+					squares[this.getFallingPosition().x + x][this.getFallingPosition().y +y] = poly.getPoly()[x][y];
 				}
 			}
 		}

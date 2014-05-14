@@ -40,7 +40,7 @@ public class TetrisComponent extends JComponent implements BoardListener {
 		}
 		
         if(gameBoard.getFalling() != null)
-        paintFalling(g2d);    
+        	paintFalling(g2d);    
 	}
     
     /**
@@ -53,10 +53,11 @@ public class TetrisComponent extends JComponent implements BoardListener {
         	for(int y = 0; y < poly.getPolyLength(); y++ ) {
         		if(poly.getPoly()[x][y] != SquareType.EMPTY) {
         			g2d.setColor(this.colorMap.get(poly.getPoly()[x][y]));
-        			g2d.fillRect((BLOCKSIZE) * (gameBoard.getFallingPostiton().x + x-1),  //compensate for OUTSIDE block
-                            (BLOCKSIZE) * (gameBoard.getFallingPostiton().y + y-1),
-                            BLOCKSIZE, BLOCKSIZE);
-                    
+        			g2d.fillRect((BLOCKSIZE) * (gameBoard.getFallingPosition().x + x-1),  //compensate for OUTSIDE block
+                            (BLOCKSIZE) * (gameBoard.getFallingPosition().y + y-1), BLOCKSIZE, BLOCKSIZE);
+                    g2d.setColor(Color.BLACK);
+                    g2d.drawRect((BLOCKSIZE) * (gameBoard.getFallingPosition().x + x-1),  //compensate for OUTSIDE block
+                            (BLOCKSIZE) * (gameBoard.getFallingPosition().y + y-1), BLOCKSIZE, BLOCKSIZE);
         		}
         	}
         }  
