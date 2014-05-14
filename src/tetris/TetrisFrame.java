@@ -27,8 +27,7 @@ public class TetrisFrame extends JFrame implements BoardListener {
 	private JLabel gameStatus;
 	private JLabel popUpStatus;
 	private TetrisComponent game;
-
-	// private NextBlockComponent nextComponent;
+	private NextBlockComponent nextComponent;
 
 	/**
 	 * This Class creates a GUI for the game itself.
@@ -37,12 +36,12 @@ public class TetrisFrame extends JFrame implements BoardListener {
 	 * @param game
 	 */
 
-	public TetrisFrame(Board board, TetrisComponent game) { // lägg till
+	public TetrisFrame(Board board, TetrisComponent game, NextBlockComponent nextBlock) { // lägg till
 															// component
 
 		this.board = board;
 		this.game = game;
-		//this.nextComponent = nextBlock
+		this.nextComponent = nextBlock;
 
 		board.addBoardListener(this);
 
@@ -209,7 +208,7 @@ public class TetrisFrame extends JFrame implements BoardListener {
 		JPanel nextBlock = new JPanel();
 		nextBlock.setLayout(new BorderLayout());
 		nextBlock.setMaximumSize(new Dimension(80, 80));
-		nextBlock.add(testarBara, BorderLayout.CENTER);
+		nextBlock.add(nextComponent, BorderLayout.CENTER);
 		sidePanel.add(nextBlock, Box.TOP_ALIGNMENT);
 	}
 	/**

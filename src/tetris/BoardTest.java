@@ -18,6 +18,7 @@ public class BoardTest implements Runnable {
 	private TetrisComponent tComponent;
 	private boolean gameOver;
 	private Thread thread;
+	private NextBlockComponent nextBlock;
 
 
 	public BoardTest() {
@@ -33,7 +34,8 @@ public class BoardTest implements Runnable {
 		board = new Board(20, 32);
 		thread = new Thread(this);
 		tComponent = new TetrisComponent(board, mColorMap);
-		new TetrisFrame(board, tComponent);
+		nextBlock = new NextBlockComponent(board, mColorMap);
+		new TetrisFrame(board, tComponent, nextBlock);
 	}
 	
 	/**
