@@ -15,10 +15,10 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 public class TetrisFrame extends JFrame implements BoardListener {
+	private static final long serialVersionUID = 1L;
 	private Board board;
 	private JLabel displayLevel;
 	private JLabel displayScore;
@@ -26,6 +26,7 @@ public class TetrisFrame extends JFrame implements BoardListener {
 	private int trackLevel;
 	private JLabel gameStatus;
 	private JLabel popUpStatus;
+	private JMenuItem pauseGame;
 	private TetrisComponent game;
 	private NextBlockComponent nextComponent;
 
@@ -36,7 +37,7 @@ public class TetrisFrame extends JFrame implements BoardListener {
 	 * @param game
 	 */
 
-	public TetrisFrame(Board board, TetrisComponent game, NextBlockComponent nextBlock) { // lägg till
+	public TetrisFrame(Board board, TetrisComponent game, NextBlockComponent nextBlock) { // l��gg till
 															// component
 
 		this.board = board;
@@ -62,7 +63,7 @@ public class TetrisFrame extends JFrame implements BoardListener {
 
 		setGameStatus();
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-		this.setResizable(false);
+		this.setResizable(true);
 		this.setFocusable(true);
 		this.setLocationRelativeTo(null); // centers the frame
 		this.pack();
@@ -91,13 +92,12 @@ public class TetrisFrame extends JFrame implements BoardListener {
 
 		// Adding information
 		setNextBlock(sidePanel);
-		sidePanel.add(Box.createVerticalStrut(60));
+		sidePanel.add(Box.createVerticalStrut(30));
 		
 		setDisplayLevel(sidePanel);
-		sidePanel.add(Box.createVerticalStrut(60));
+		sidePanel.add(Box.createVerticalStrut(30));
 		
 		setDisplayScore(sidePanel);
-		
 		this.add(sidePanel, BorderLayout.EAST);
 	}
 
@@ -109,7 +109,6 @@ public class TetrisFrame extends JFrame implements BoardListener {
 		boardPanel.setBorder(new EmptyBorder(10, 10, 0, 0));
 		boardPanel.setLayout(new BorderLayout());
 		boardPanel.setMaximumSize(this.getSize());
-		
 		boardPanel.add(game);
 		this.add(boardPanel, BorderLayout.CENTER);
 
@@ -143,7 +142,7 @@ public class TetrisFrame extends JFrame implements BoardListener {
 		});
 
 		// Pause Game
-		JMenuItem pauseGame = new JMenuItem("Pause");
+		pauseGame = new JMenuItem("Pause");
 		menu.add(pauseGame);
 		pauseGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -172,7 +171,6 @@ public class TetrisFrame extends JFrame implements BoardListener {
 		// Game status label
 		gameStatus = new JLabel("Game is running");
 		gameStatus.setBorder(new EmptyBorder(0, 10, 10, 0));
-		
 		this.add(gameStatus, BorderLayout.PAGE_END);
 	}
 	/**
@@ -206,10 +204,13 @@ public class TetrisFrame extends JFrame implements BoardListener {
 
 		// Next block box
 		JPanel nextBlock = new JPanel();
+		nextBlock.setBackground(Color.CYAN);
+		nextBlock.setPreferredSize(new Dimension(100,100));
 		nextBlock.setLayout(new BorderLayout());
-		nextBlock.setMaximumSize(new Dimension(80, 80));
+		//nextBlock.setMaximumSize(new Dimension(80, 80));
 		nextBlock.add(nextComponent, BorderLayout.CENTER);
 		sidePanel.add(nextBlock, Box.TOP_ALIGNMENT);
+		
 	}
 	/**
 	 * Displays the current level 
@@ -235,9 +236,12 @@ public class TetrisFrame extends JFrame implements BoardListener {
 	 */
 	private void setPauseStatus() {
 		if(board.getPause()){
-			gameStatus.setText("Game is paused");
+			gameStatus.setText("<html>Game is <font color='red'> paused </font></html>");
+			pauseGame.setText("Unpause	P");
+			
 		}else{
-			gameStatus.setText("Game is running");
+			gameStatus.setText("<html>Game is <font color='red'> running </font></html>");
+			pauseGame.setText("Pause	P");
 		}
 	}
 	/**
@@ -249,14 +253,16 @@ public class TetrisFrame extends JFrame implements BoardListener {
 
 	@Override
 	public void boardChanged() {
-		// Kollar alla labels och updates s�� den kan uppdatera boarden
+		// Kollar alla labels och updates s������ den kan uppdatera boarden
 		setPauseStatus();
 		
 		if(board.getScore() != trackScore){
-			displayScore.setText(board.getScore() + "");
+			trackScore = board.getScore();
+			displayScore.setText(trackScore + "");
 		}
 		if(board.getLevel() != trackLevel){
-			displayLevel.setText(board.getLevel() + "");
+			trackLevel = board.getLevel();
+			displayLevel.setText(trackLevel + "");
 		}
 		if(board.gameOver()){
 			gameStatus.setText("Game Over");
