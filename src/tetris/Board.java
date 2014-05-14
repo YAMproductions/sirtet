@@ -278,7 +278,6 @@ public class Board {
 		if(i == 39 && pause == false)
 			tryMoveX(this.falling, 1);
 		//40 = down
-		//check movePoly() first
 		if(i == 40 && this.falling != null && pause == false)
 			tryMove(this.falling);
 		
