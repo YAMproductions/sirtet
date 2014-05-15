@@ -60,7 +60,7 @@ public class MainMenu extends JFrame {
 	 */
 	private void setUpBackground(){	
 		JLabel background = new JLabel(new ImageIcon(
-				"/Users/ZiadGiliana/Android/ProjektInda/sirtet/CMON2.png")
+				"src/CMON2.png")
 		);
 		
 		background.setLayout(new GridBagLayout());
@@ -126,11 +126,11 @@ public class MainMenu extends JFrame {
 	private void makeButtons(JLabel background){
 		
 		startButton = new JButton(new ImageIcon(
-				"/Users/ZiadGiliana/Android/ProjektInda/sirtet/TetrisStartButton.png")
+				"src/TetrisStartButton.png")
 				);
 	
 		aboutButton = new JButton(new ImageIcon(
-				"/Users/ZiadGiliana/Android/ProjektInda/sirtet/TetrisAboutButton.png")
+				"src/TetrisAboutButton.png")
 				);
 		
 		startButton.addActionListener(new ActionListener(){
