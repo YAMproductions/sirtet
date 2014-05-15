@@ -1,10 +1,17 @@
 package tetris;
 
+/**
+ * SquareType Class
+ * 
+ * @author YAM Productions
+ * @version 1
+ *
+ */
 public class Poly {
 	private SquareType[][] poly;
 
 	/**
-	 * A general class to make all type of blocks
+	 * 
 	 * @param poly
 	 */
 	public Poly(SquareType[][] poly){

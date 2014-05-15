@@ -5,6 +5,13 @@ import java.awt.event.KeyListener;
 
 import tetris.Board;
 
+/**
+ * Keyboard Class
+ * 
+ * @author YAM Productions
+ * @version 1
+ *
+ */
 public class Keyboard implements KeyListener {
 
 

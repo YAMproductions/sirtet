@@ -19,7 +19,6 @@ import java.util.HashMap;
  * @version 1.0	(2014-05-14)
  *
  */
-
 public class TetrisComponent extends JComponent implements BoardListener {
 	
 	private static final long serialVersionUID = 1L;
@@ -84,7 +83,7 @@ public class TetrisComponent extends JComponent implements BoardListener {
 	@Override
 	public Dimension getPreferredSize() {
 		super.getPreferredSize();
-		return new Dimension((board.getWidth() - 2) * BLOCKSIZE, (board.getHeight() -2) * BLOCKSIZE);
+		return new Dimension((board.getWidth() - 1) * BLOCKSIZE, (board.getHeight() -1) * BLOCKSIZE);
 	}
 
 	/**

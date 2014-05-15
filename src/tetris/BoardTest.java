@@ -5,8 +5,10 @@ import java.util.HashMap;
 
 
 /**
+ * BoardTest Class
  * 
- * @author Daniel
+ * @author YAM Productions
+ * @version 1
  *
  */
 public class BoardTest implements Runnable {
@@ -23,10 +25,10 @@ public class BoardTest implements Runnable {
 	public BoardTest() {
 		gameOver = false;
 		setUpColorMap();
-		createBoard();
+		//createBoard();
 		//run();
 	}
-	private void createBoard() {
+	public void createBoard() {
 		board = new Board(20, 32);
 		tComponent = new TetrisComponent(board, mColorMap);
 		nextBlock = new NextBlockComponent(board, mColorMap);
@@ -52,12 +54,13 @@ public class BoardTest implements Runnable {
         this.mColorMap.put(SquareType.Z, Color.RED);
         this.mColorMap.put(SquareType.S, Color.GREEN);
         this.mColorMap.put(SquareType.T, PURPLE_COLOR);
-        this.mColorMap.put(SquareType.EMPTY, Color.WHITE);
+        this.mColorMap.put(SquareType.EMPTY, Color.BLACK);
         this.mColorMap.put(SquareType.OUTSIDE, Color.BLACK);
     }
 	
 	public static void main(String[] args) {
 		BoardTest game = new BoardTest();
+		//game.run();
 		new MainMenu(game);
 	}
   

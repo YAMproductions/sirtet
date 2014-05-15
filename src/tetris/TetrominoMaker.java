@@ -8,7 +8,6 @@ package tetris;
  * @version 1.0	(2014-05-14)
  *
  */
-
 public class TetrominoMaker {
 	
 	private static int numberOfTypes;	//Amount of different blocks
@@ -40,10 +39,12 @@ public class TetrominoMaker {
 			case 6: {
 				return new Poly(makeO()); //creates an O-piece
 			}
-			default : {
-				return new Poly(makeO()); //creates an O-piece
-			}
-		}	
+			//default : {
+			//	return new Poly(makeO()); //creates an O-piece
+			//}
+			
+		}
+		return null;
 	}
 	
 	/**

@@ -12,6 +12,13 @@ import javax.swing.JLabel;
 import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 
+/**
+ * MainMenu Class
+ * 
+ * @author YAM Productions
+ * @version 1
+ *
+ */
 public class MainMenu extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JButton startButton;
@@ -129,6 +136,7 @@ public class MainMenu extends JFrame {
 		startButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				rmMainMenu();
+				bTest.createBoard();
 				bTest.run();
 				
 				

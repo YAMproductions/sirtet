@@ -16,6 +16,13 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+/**
+ * TetrisFrame Class
+ * 
+ * @author YAM Productions
+ * @version 1
+ *
+ */
 public class TetrisFrame extends JFrame implements BoardListener {
 	private static final long serialVersionUID = 1L;
 	private Board board;
@@ -36,7 +43,6 @@ public class TetrisFrame extends JFrame implements BoardListener {
 	 * @param board
 	 * @param game
 	 */
-
 	public TetrisFrame(Board board, TetrisComponent game, NextBlockComponent nextBlock, BoardTest bTest) { // l��gg till
 		super("SIRTET");													
 		this.board = board;
