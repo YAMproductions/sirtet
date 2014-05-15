@@ -33,7 +33,7 @@ public class Poly {
 		Poly newPoly = new Poly(new SquareType[this.getPolyLength()][this.getPolyLength()]);	    
 	    for (int r = 0; r < this.getPolyLength(); r++) {
 	        for (int c = 0; c < this.getPolyLength(); c++){
-	            newPoly.poly[c][this.getPolyLength()-1 -r] = this.poly[r][c];
+	            newPoly.poly[this.getPolyLength() - 1 - c][r] = this.poly[r][c];
 	        }
 	    }    
 	    return newPoly;
