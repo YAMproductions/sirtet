@@ -28,6 +28,7 @@ public class TetrisFrame extends JFrame implements BoardListener {
 	private JMenuItem pauseGame;
 	private TetrisComponent game;
 	private NextBlockComponent nextComponent;
+	private BoardTest bTest;
 
 	/**
 	 * This Class creates a GUI for the game itself.
@@ -36,12 +37,12 @@ public class TetrisFrame extends JFrame implements BoardListener {
 	 * @param game
 	 */
 
-	public TetrisFrame(Board board, TetrisComponent game, NextBlockComponent nextBlock) { // l��gg till
-															// component
-
+	public TetrisFrame(Board board, TetrisComponent game, NextBlockComponent nextBlock, BoardTest bTest) { // l��gg till
+		super("SIRTET");													
 		this.board = board;
 		this.game = game;
 		this.nextComponent = nextBlock;
+		this.bTest = bTest;
 
 		board.addBoardListener(this);
 
@@ -110,6 +111,9 @@ public class TetrisFrame extends JFrame implements BoardListener {
 		this.add(boardPanel, BorderLayout.CENTER);
 
 	}
+	private void remGame(){
+		this.dispose();
+	}
 
 	/**
 	 * Creates the menu bar and buttons
@@ -127,7 +131,17 @@ public class TetrisFrame extends JFrame implements BoardListener {
 		menuBar.add(menu);
 
 		// Creates and adds menu items
-
+		
+		// Go to Main menu
+		JMenuItem mainMenu = new JMenuItem("Main Menu");
+		menu.add(mainMenu);
+		// Listener
+		mainMenu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new MainMenu(bTest);
+				remGame();
+			}
+		});
 		// Start a new game
 		JMenuItem startGame = new JMenuItem("New Game");
 		menu.add(startGame);
