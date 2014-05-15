@@ -23,12 +23,12 @@ public class MainMenu extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JButton startButton;
 	private JButton aboutButton;
-	private BoardTest bTest;
+	private final BoardTest bTest;
 
 	
-	public MainMenu(BoardTest bTest){
+	public MainMenu(){
 		super("Main Menu");
-		this.bTest = bTest;
+		this.bTest = new BoardTest();
 		createMainMenu();
 		
 	}
@@ -37,10 +37,7 @@ public class MainMenu extends JFrame {
 	 */
 	private void createMainMenu(){
 		setUpFrame();
-		
 		setUpBackground(); //Also creates buttons
-		
-		
 		this.pack();
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
@@ -136,11 +133,8 @@ public class MainMenu extends JFrame {
 		startButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				rmMainMenu();
-				bTest.createBoard();
-				bTest.run();
-				
-				
-				
+				startGame();
+							
 			}
 		});	
 		aboutButton.addActionListener(new ActionListener(){
@@ -154,5 +148,13 @@ public class MainMenu extends JFrame {
 		//background.add(scoreButton, Box.TOP_ALIGNMENT);
 		background.add(aboutButton);
 
+	}
+	
+	public void startGame() {
+		this.bTest.setUp();
+	}
+	
+	public static void main(String[] args) {
+		new MainMenu();
 	}
 }

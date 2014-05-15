@@ -11,7 +11,7 @@ import java.util.HashMap;
  * @version 1
  *
  */
-public class BoardTest implements Runnable {
+public class BoardTest {
 	
 	private static final Color PURPLE_COLOR = new Color(128,0,128);
 	private static final Color OLIVE_COLOR = new Color(128,128,0);
@@ -23,23 +23,27 @@ public class BoardTest implements Runnable {
 
 
 	public BoardTest() {
+	}
+	
+	public void setUp() {
 		gameOver = false;
 		setUpColorMap();
-		//createBoard();
-		//run();
+		createBoard();
+		this.run();
 	}
-	public void createBoard() {
-		board = new Board(20, 32);
+	
+	private void createBoard() {
+		this.board = new Board(20, 32);
 		tComponent = new TetrisComponent(board, mColorMap);
 		nextBlock = new NextBlockComponent(board, mColorMap);
-		new TetrisFrame(board, tComponent, nextBlock, this);	
+		new TetrisFrame(this.board, tComponent, nextBlock);	
 	}
 	/**
 	 * The game loop
 	 */
 	public void run() {
 		while(!this.gameOver) {
-			board.updateBoard();
+			this.board.updateBoard();
 		}	
 	}
     /**
@@ -60,8 +64,7 @@ public class BoardTest implements Runnable {
 	
 	public static void main(String[] args) {
 		BoardTest game = new BoardTest();
-		//game.run();
-		new MainMenu(game);
+		game.setUp();
 	}
   
 }
