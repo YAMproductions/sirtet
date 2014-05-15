@@ -17,7 +17,6 @@ public class BoardTest implements Runnable {
 	private Board board;
 	private TetrisComponent tComponent;
 	private boolean gameOver;
-	private Thread thread;
 	private NextBlockComponent nextBlock;
 
 
@@ -25,19 +24,14 @@ public class BoardTest implements Runnable {
 		gameOver = false;
 		setUpColorMap();
 		createBoard();
-		thread = new Thread(this);
-		thread.start();
-		run();
+		//run();
 	}
-	
 	private void createBoard() {
 		board = new Board(20, 32);
-		thread = new Thread(this);
 		tComponent = new TetrisComponent(board, mColorMap);
 		nextBlock = new NextBlockComponent(board, mColorMap);
-		new TetrisFrame(board, tComponent, nextBlock);
+		new TetrisFrame(board, tComponent, nextBlock, this);	
 	}
-	
 	/**
 	 * The game loop
 	 */
@@ -46,7 +40,6 @@ public class BoardTest implements Runnable {
 			board.updateBoard();
 		}	
 	}
-	
     /**
      * Method setting up the Color Map
      */
@@ -62,9 +55,10 @@ public class BoardTest implements Runnable {
         this.mColorMap.put(SquareType.EMPTY, Color.WHITE);
         this.mColorMap.put(SquareType.OUTSIDE, Color.BLACK);
     }
-		
+	
 	public static void main(String[] args) {
-		new BoardTest();
+		BoardTest game = new BoardTest();
+		new MainMenu(game);
 	}
-
+  
 }
